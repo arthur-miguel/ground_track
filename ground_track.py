@@ -1,4 +1,17 @@
-import cv2 as cv
+#!/bin/python
+#########################################################
+#   
+#   Python library for orbit ground track ploting 
+#
+#   Authors: Arthur Gabardo*, Andre Canani
+#
+#   Date: 18/11/2022
+#
+#   Contact: arthur.miguel@grad.ufsc.br
+#
+#########################################################
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import newton
@@ -9,7 +22,18 @@ tModes = ["seconds", "minutes", "hours", "days"]
 def E_prime(E_, M, e): return E_ - e*np.sin(E_) - M
 
 class Orbit:
-    
+    """
+    Orbit object, major semiaxis and eccentricity are required, other parameters are optional
+    params: a         = major semiaxis
+            e         = eccentricity
+            I         = inclination
+            Omega     = accending node longitude
+            omega     = periapsis argument
+            epoch     = starting time
+            time_mode = input time unit
+            delta_t   = time-step
+            mu        = standard gravitational parameter
+    """    
     def __init__(self,
                  a,
                  e,
@@ -65,6 +89,7 @@ class Orbit:
         return
 
     def __set_rotation_mat__(self):
+        """Sets rotation matices based on orbit parameters"""
         self.R_O = np.array([[np.cos(self.Omega), -np.sin(self.Omega), 0],
                              [np.sin(self.Omega),  np.cos(self.Omega), 0],
                              [                 0,                   0, 1]])
@@ -79,6 +104,7 @@ class Orbit:
         return
     
     def M_f(self):
+        """Calculates mean anomaly at given time"""
         M =  (2*np.pi/self.period) * (self.t - self.epoch)
         for i, Mi in enumerate(M):
             while M[i] < 0         : M[i] += (2*np.pi)
@@ -87,6 +113,7 @@ class Orbit:
         return self.M
 
     def E_f(self):
+        """Calculates eccentic anomaly from mean anomaly using newton-raphson method"""
         E = []
         for i, Mi in enumerate(self.M):
             Ei = newton(E_prime, Mi, args=(Mi, self.e,))
@@ -97,6 +124,7 @@ class Orbit:
         return self.E
 
     def E2f(self):
+        """Converts eccentric anomaly to true anomaly"""
         f = []
         for i, Ei in enumerate(self.E):
             fi = (2*np.arctan2(np.sqrt(1+self.e) * np.tan(Ei/2), np.sqrt(1-self.e)))
@@ -107,10 +135,12 @@ class Orbit:
         return self.f
 
     def __radius(self):
+        """Computes orbit radius at a given true anomaly"""
         self.radius_t = self.a*(1-self.e**2)/(1 + self.e*np.cos(self.f))
         return self.radius_t
 
     def toEqCoords(self):
+        """Transforms orbit plane coordinates to equatorial coordinates"""
         rot = np.matmul(np.matmul(self.R_O, self.R_I), self.R_o)
         anom = [np.cos(self.f), np.sin(self.f), np.zeros(len(self.f))]
         anom = np.array(anom).T
@@ -124,6 +154,7 @@ class Orbit:
         return self.xyz
 
     def longitude(self):
+        """Calculates longitude based on earths rotation and equatorial coordinates"""
         x, y, z = self.xyz
         long = []
         for i in range(len(x)):
@@ -135,6 +166,7 @@ class Orbit:
         return self.longitude_t
 
     def latitude(self):
+        """Calculates latitude based on equatorial coordinates"""
         x, y, z = self.xyz
         lat = []
         for i in range(len(x)):
@@ -146,6 +178,10 @@ class Orbit:
         return self.latitude_t
     
     def evaluate(self, t):
+        """
+        Computes orbit kinematics at a time interval
+        param: t = time interval
+        """
         self.t = t
         self.M_f()
         self.E_f()
@@ -156,12 +192,14 @@ class Orbit:
         return
     
     def save_data(self, fname="orbit.csv"):
+        """Saves orbit data to text file"""
         data = np.column_stack((self.t, self.M, self.f, self.E, self.M, self.xyz[0], self.xyz[1], self.xyz[2], self.longitude_t * (180/np.pi), self.latitude_t * (180/np.pi)))
         np.savetxt(fname, data)
+        self.fname = fname
         return
     
-    def plot_track(self, fname):
-        cmd = "gnuplot -e \"filename='{}'\" rota_solo.txt".format(fname)
+    def plot_track(self):
+        cmd = "gnuplot -e \"filename='{}'\" rota_solo.txt".format(self.fname)
         call(cmd, shell=True)
         #long = self.longitude_t; lat = self.latitude_t
         #pos = np.where(np.abs(np.diff(long)) >= 0.5)[0]+1
