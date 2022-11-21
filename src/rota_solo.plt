@@ -24,7 +24,7 @@ reset
  lon = 8;               # número da coluna do arquivo de dados com a longitude
  lat = 9;               # número da coluna do arquivo de dados com a latitude
  
- xtempo = 1.0/60;          # fator de conversão do tempo de sua série para minutos
+ xtempo = delta_t;          # fator de conversão do tempo de sua série para minutos
  
  
  ps0 = 0.5;             # Tamanho padrão do ponto

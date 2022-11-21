@@ -7,7 +7,7 @@
 #
 #   Date: 18/11/2022
 #
-#   Contact: arthur.miguel@grad.ufsc.br
+#   Mail: arthur.miguel@grad.ufsc.br
 #
 #############################################################
 
@@ -42,48 +42,45 @@ class Orbit:
                  omega=0,
                  epoch=0,
                  time_mode="seconds",
-                 delta_t=1,
+                 delta_t=10,
                  mu=398600):
 
         if (time_mode not in tModes):
             self.time_mode = input("Invalid time mode, select a valid one ({}): ".format(tModes))
-        else:
-            self.time_mode = time_mode
+        else: self.time_mode = time_mode
 
-        if (time_mode == "seconds"): self.t_factor = 3600
-        if (time_mode == "minutes"): self.t_factor = 60
-        if (time_mode == "hours")  : self.t_factor = 1
-        if (time_mode == "days")   : self.t_factor = 1/24
+        if (time_mode == "seconds"): self.t_factor = 1
+        if (time_mode == "minutes"): self.t_factor = 1/60
+        if (time_mode == "hours")  : self.t_factor = 1/3600
+        if (time_mode == "days")   : self.t_factor = 1/86400
 
 
         if (delta_t <= 0):
             self.delta_t = input("Invalid time-step (delta_t > 0$): ")
+        else : self.delta_t = delta_t
 
         if (a <= 0):
             self.a = input("Invalid major semiaxis (a > 0): ")
-        else:
-            self.a = a
+        else: self.a = a
 
         if (e < 0):
             self.e = input("Invalid excentricity (e >= 0): ")
-        else:
-            self.e = e
+        else: self.e = e
 
         if (I > np.pi):
-            self.I = I%np.pi
+            self.I = (I%180) * (np.pi/180)
         elif (I < 0):
-            while(I < 0): I += 2*np.pi
-            self.I = I%np.pi
-        else:
-            self.I = I
+            while(I < 0): I += 360
+            self.I = (I%180) * (np.pi/180)
+        else: self.I = I * (np.pi/180)
 
-        self.Omega = Omega%(2*np.pi)
-        self.omega = omega%(2*np.pi)
+        self.Omega = Omega%(360) * (np.pi/180)
+        self.omega = omega%(360) * (np.pi/180)
 
-        self.mu = abs(mu)
+        self.mu = abs(mu) * (1/self.t_factor)**2
 
         self.epoch = epoch
-        self.period = 2*np.pi * np.sqrt(a**3/mu)
+        self.period = 2*np.pi * np.sqrt(self.a**3/self.mu)
 
         self.__set_rotation_mat__()
         return
@@ -158,7 +155,7 @@ class Orbit:
         x, y, z = self.xyz
         long = []
         for i in range(len(x)):
-            phi = np.arctan2(y[i], x[i]) - (np.pi/(12*self.t_factor))*(self.t[i] - self.epoch)
+            phi = np.arctan2(y[i], x[i]) - (np.pi/(3600*12*self.t_factor))*(self.t[i] - self.epoch)
             while phi < -np.pi : phi+=(2*np.pi)
             while phi >  np.pi : phi-=(2*np.pi)
             long.append(phi)
@@ -177,11 +174,15 @@ class Orbit:
         self.latitude_t = np.array(lat)
         return self.latitude_t
 
-    def evaluate(self, t):
+    def evaluate(self, begin=None, end=None):
         """
         Computes orbit kinematics at a time interval
-        param: t = time interval
+        param: begin = begining of time interval (default is epoch)
+               end   = end of time interval (default is one period)
         """
+        if begin is None : begin = self.epoch
+        if end is None : end = self.period
+        t = np.arange(begin, end, self.delta_t )
         self.t = t
         self.M_f()
         self.E_f()
@@ -204,8 +205,12 @@ class Orbit:
         return
 
     def plot_track(self, output=None):
-        if output == None : output = self.fname + ".png"
-        cmd = "gnuplot -p -e \"filename='{}'; outputfile='{}'\" rota_solo.plt".format(self.fname, output)
+        if output is None : output = self.fname + ".png"
+        if self.time_mode == "seconds" : tscale = 1.0/60
+        elif self.time_mode == "minutes" : tscale = 1.0
+        elif self.time_mode == "hours" : tscale = 60.0
+        else : tscale = 60*24.0
+        cmd = "gnuplot -p -e \"filename='{}'; outputfile='{}'; delta_t = {}\" rota_solo.plt".format(self.fname, output, tscale)
         call(cmd, shell=True)
         #long = self.longitude_t; lat = self.latitude_t
         #pos = np.where(np.abs(np.diff(long)) >= 0.5)[0]+1
