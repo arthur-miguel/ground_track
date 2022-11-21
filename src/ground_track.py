@@ -83,7 +83,15 @@ class Orbit:
         self.period = 2*np.pi * np.sqrt(self.a**3/self.mu)
 
         self.__set_rotation_mat__()
+
+
         return
+
+    def __misc_params__(self):
+        self.periapsis = a*(1-e)
+        self.apoapsis = 2*a - self.periapsis
+        self.ang_moment = np.sqrt(self.a*(1 - self.e**2)/self.mu)
+        self.c3 = -2*self.a/self.mu
 
     def __set_rotation_mat__(self):
         """Sets rotation matices based on orbit parameters"""
@@ -239,11 +247,20 @@ class Orbit:
     def f_at(self, t):
         return self.__interpolate__(self.f, t)
 
-    def r_at(self, t):
-        return self.__interpolate__(self.radius_t, t)
-
     def long_at(self, t):
         return self.__interpolate__(self.longitude_t, t)
 
     def lat_at(self, t):
         return self.__interpolate__(self.latitude_t, t)
+
+    def r_at(self, f):
+        f = f * (np.pi/180)
+        return self.a*(1-self.e**2)/(1 + self.e*np.cos(f))
+
+    def v_at(self, f)
+        f = f * (np.pi/180)
+        return self.mu/self.ang_moment * np.sqrt(1 + self.e**2 + 2*self.e*np.cos(f))
+
+    def gamma_at(self, f):
+        f = f * (np.pi/180)
+        return np.arctan2(self.e * np.sin(f), 1 + self.e*np.cos(f))
