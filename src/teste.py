@@ -14,7 +14,6 @@ molnyia.plot_track() # plots ground track
 
 # Space Station gorund track
 iss = Orbit(417 + 6371, 0.01, 51.64, time_mode="hours", delta_t = 10/3600)
-print(iss.mu, iss.period)
 iss.evaluate(0, 24)
 iss.save_data("iss")
 iss.plot_track()
