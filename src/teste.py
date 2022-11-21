@@ -18,3 +18,8 @@ iss.evaluate(0, 24)
 iss.save_data("iss")
 iss.plot_track()
 
+f0 = iss.f_at(0)
+fQ = iss.f_at(iss.period/2)
+
+print(f0, fQ)
+
