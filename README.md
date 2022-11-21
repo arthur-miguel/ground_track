@@ -1,6 +1,8 @@
 # Traçado de Solo
 *Biblioteca em Python para traçado de solo de orbitas fechadas. Parte da disciplina de Mecânica do Voo Espacial da Universidade Federal de Santa Catarina*
 
+## Sobre (TODO)
+
 ## Dependências
 ```
 Python >= 3.0
