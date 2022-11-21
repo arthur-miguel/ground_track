@@ -1,12 +1,12 @@
 # Imports ground_track library
-from ../ground_track import *
+from ground_track import *
 
 # Molnyia ground track
-molnyia = Orbit( 26600,             #major semiaxis
-                0.74,               #eccentricity
-                63.4 * (np.pi/180), #inclination
-                80 * (np.pi/180),   #accending node
-                270 * (np.pi/180)   #periapsis argument
+molnyia = Orbit( 26600,              #major semiaxis
+                 0.74,               #eccentricity
+                 63.4 * (np.pi/180), #inclination
+                 80 * (np.pi/180),   #accending node
+                 270 * (np.pi/180)   #periapsis argument
                )
 molnyia.evaluate(np.linspace(0, 2*molnyia.period, 10000)) # evaluates orbit at two periods
 molnyia.save_data("molnyia") # saves text file with results
