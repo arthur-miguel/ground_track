@@ -18,15 +18,7 @@ Gnuplot >= 5.0
 ```sh
 pip install --user numpy scipy
 # debian distros
-sudo apt install gnuplot
-# fedora distros
-sudo dnf install gnuplot
-# suse distros
-sudo zypper install gnuplot
-# arch distros
-sudo pacman -S gnuplot
-# gentoo
-sudo emerge -av gnuplot
+sudo apt install gnuplot # para outras distros consulte seu package manager
 ```
 **Código-fonte**
 ```
