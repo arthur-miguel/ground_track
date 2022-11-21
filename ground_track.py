@@ -1,15 +1,15 @@
 #!/bin/python
-#########################################################
+##############################################################
 #   
 #   Python library for orbit ground track ploting 
 #
-#   Authors: Arthur Gabardo*, Andre Canani
+#   Authors: Arthur Gabardo*, Andre Canani, Vinicus Pereira
 #
 #   Date: 18/11/2022
 #
 #   Contact: arthur.miguel@grad.ufsc.br
 #
-#########################################################
+#############################################################
 
 
 import numpy as np
