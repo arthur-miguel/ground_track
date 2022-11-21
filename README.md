@@ -43,6 +43,6 @@ python teste.py
 
 Arthur Gabardo - <arthur.miguel@grad.ufsc.br>
 
-Github - <https://github.com/arthur-miguel/mec_voo>
+Github - <https://github.com/arthur-miguel/ground_track>
 
 Agradecimentos ao [Prof. Helton Gaspar da Silva](https://helton.paginas.ufsc.br/) pelo script do Gnuplot
