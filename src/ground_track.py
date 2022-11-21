@@ -100,7 +100,7 @@ class Orbit:
                              [0, np.sin(self.I),  np.cos(self.I)]])
         return
 
-    def M_f(self):
+    def __M_f__(self):
         """Calculates mean anomaly at given time"""
         M =  (2*np.pi/self.period) * (self.t - self.epoch)
         for i, Mi in enumerate(M):
@@ -109,7 +109,7 @@ class Orbit:
         self.M = np.array(M)
         return self.M
 
-    def E_f(self):
+    def __E_f__(self):
         """Calculates eccentic anomaly from mean anomaly using newton-raphson method"""
         E = []
         for i, Mi in enumerate(self.M):
@@ -120,7 +120,7 @@ class Orbit:
         self.E = np.array(E)
         return self.E
 
-    def E2f(self):
+    def __E2f__(self):
         """Converts eccentric anomaly to true anomaly"""
         f = []
         for i, Ei in enumerate(self.E):
@@ -131,18 +131,18 @@ class Orbit:
         self.f = np.array(f)
         return self.f
 
-    def __radius(self):
+    def __radius__(self):
         """Computes orbit radius at a given true anomaly"""
         self.radius_t = self.a*(1-self.e**2)/(1 + self.e*np.cos(self.f))
         return self.radius_t
 
-    def toEqCoords(self):
+    def __toEqCoords__(self):
         """Transforms orbit plane coordinates to equatorial coordinates"""
         rot = np.matmul(np.matmul(self.R_O, self.R_I), self.R_o)
         anom = [np.cos(self.f), np.sin(self.f), np.zeros(len(self.f))]
         anom = np.array(anom).T
 
-        r = self.__radius()
+        r = self.__radius__()
 
         xyz = []
         for i, anomi in enumerate(anom):
@@ -150,7 +150,7 @@ class Orbit:
         self.xyz = np.array(xyz).T
         return self.xyz
 
-    def longitude(self):
+    def __longitude__(self):
         """Calculates longitude based on earths rotation and equatorial coordinates"""
         x, y, z = self.xyz
         long = []
@@ -162,7 +162,7 @@ class Orbit:
         self.longitude_t = np.array(long)
         return self.longitude_t
 
-    def latitude(self):
+    def __latitude__(self):
         """Calculates latitude based on equatorial coordinates"""
         x, y, z = self.xyz
         lat = []
@@ -174,6 +174,17 @@ class Orbit:
         self.latitude_t = np.array(lat)
         return self.latitude_t
 
+    def __interpolate__(self, arr, t0):
+        idx = np.abs(self.t - t0).argmin()
+        if self.t[idx] - t0 == 0 : return arr[idx]
+        elif self.t[idx] - t0 > 0 :
+            t1 = self.t[idx-1]; M1 = arr[idx-1]
+            t2 = self.t[idx]; M2 = arr[idx]
+        else:
+            t1 = self.t[idx]; M1 = arr[idx]
+            t2 = self.t[idx+1]; M2 = arr[idx+1]
+        return (M1 - M2)/(t1 - t2) * (t0 - t1) + M1
+
     def evaluate(self, begin=None, end=None):
         """
         Computes orbit kinematics at a time interval
@@ -184,12 +195,12 @@ class Orbit:
         if end is None : end = self.period
         t = np.arange(begin, end, self.delta_t )
         self.t = t
-        self.M_f()
-        self.E_f()
-        self.E2f()
-        self.toEqCoords()
-        self.longitude()
-        self.latitude()
+        self.__M_f__()
+        self.__E_f__()
+        self.__E2f__()
+        self.__toEqCoords__()
+        self.__longitude__()
+        self.__latitude__()
         return
 
     def save_data(self, fname="orbit"):
@@ -226,3 +237,26 @@ class Orbit:
         #plt.savefig(fname)
         #plt.show()
         return
+
+    def plot_3D(self):
+        cmd = "gnuplot -e \"filename='{}'\" orb3D.plt".format(self.fname)
+        call(cmd, shell=True)
+        return
+
+    def M_at(self, t):
+        return self.__interpolate__(self.M, t)
+
+    def E_at(self, t): 
+        return self.__interpolate__(self.E, t)
+
+    def f_at(self, t):
+        return self.__interpolate__(self.f, t)
+
+    def r_at(self, t):
+        return self.__interpolate__(self.radius_t, t)
+
+    def long_at(self, t):
+        return self.__interpolate__(self.longitude_t, t)
+
+    def lat_at(self, t):
+        return self.__interpolate__(self.latitude_t, t)
