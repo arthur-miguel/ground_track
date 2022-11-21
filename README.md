@@ -16,6 +16,8 @@ sudo apt install gnuplot
 git clone https://github.com/arthur-miguel/mec_voo.git
 ```
 
+### Windows
+
 ## Exemplos
 ```python
 orb1 = Orbita(semieixo, excentricidade, inclinação, long. do periapse, arg. periapse) # veja arquivo gorundtrack.py para mais opções
