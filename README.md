@@ -33,9 +33,9 @@ O arquivo `teste.py` possui exemplos do traçado da ISS e Molnya durante o curso
 python teste.py
 ```
 ### Traçado de solo da ISS
-![alt text](./example/iss.txt.png?raw=true)
+![alt text](./example/iss.png?raw=true)
 ### Traçado de solo da Molnyia
-![alt text](./example/molnyia.txt.png?raw=true)
+![alt text](./example/molnyia.png?raw=true)
 
 ## Contato
 
