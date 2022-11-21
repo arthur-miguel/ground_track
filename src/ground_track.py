@@ -32,7 +32,7 @@ class Orbit:
             epoch     = starting time
             time_mode = input time unit
             delta_t   = time-step
-            mu        = standard gravitational parameter
+            mu        = standard gravitational parameter (km³s⁻²)
     """
     def __init__(self,
                  a,
