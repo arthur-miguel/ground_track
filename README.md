@@ -49,8 +49,15 @@ python teste.py
 ```
 ### Traçado de solo da ISS
 ![alt text](./example/iss.png?raw=true)
+
+### Orbita ISS 3D
+![alt text](./example/iss_3D.png?raw=true)
+
 ### Traçado de solo da Molnyia
 ![alt text](./example/molnyia.png?raw=true)
+
+### Orbita Molnyia 3D
+![alt text](./example/molnyia_3D.png?raw=true)
 
 ## Contato
 
