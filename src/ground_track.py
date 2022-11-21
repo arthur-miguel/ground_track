@@ -223,19 +223,6 @@ class Orbit:
         else : tscale = 60*24.0
         cmd = "gnuplot -p -e \"filename='{}'; outputfile='{}'; delta_t = {}\" rota_solo.plt".format(self.fname, output, tscale)
         call(cmd, shell=True)
-        #long = self.longitude_t; lat = self.latitude_t
-        #pos = np.where(np.abs(np.diff(long)) >= 0.5)[0]+1
-        #long = np.insert(long, pos, np.nan)
-        #lat = np.insert(lat, pos, np.nan)
-
-        #worldm = cv.imread(background)
-        #worldm = cv.cvtColor(worldm, cv.COLOR_BGR2RGB)
-        #h, w, _ = worldm.shape
-        #plt.imshow(worldm, extent=[-180, 180, -90, 90])
-        #plt.plot(long * (180/np.pi), lat * (180/np.pi), color="red")
-        #plt.tight_layout()
-        #plt.savefig(fname)
-        #plt.show()
         return
 
     def plot_3D(self):
