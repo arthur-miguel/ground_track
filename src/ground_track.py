@@ -24,15 +24,15 @@ def E_prime(E_, M, e): return E_ - e*np.sin(E_) - M
 class Orbit:
     """
     Orbit object, major semiaxis and eccentricity are required, other parameters are optional
-    params: a         = major semiaxis
+    params: a         = major semiaxis [km]
             e         = eccentricity
-            I         = inclination
-            Omega     = accending node longitude
-            omega     = periapsis argument
-            epoch     = starting time
+            I         = inclination [degree]
+            Omega     = accending node longitude [degree]
+            omega     = periapsis argument [degree]
+            epoch     = starting time [same as time_mode]
             time_mode = input time unit
-            delta_t   = time-step
-            mu        = standard gravitational parameter
+            delta_t   = time-step [same as time_mode]
+            mu        = standard gravitational parameter [km^3/s^2]
     """
     def __init__(self,
                  a,
@@ -83,7 +83,15 @@ class Orbit:
         self.period = 2*np.pi * np.sqrt(self.a**3/self.mu)
 
         self.__set_rotation_mat__()
+	self.__misc_params__()
+
         return
+
+    def __misc_params__(self):
+        self.periapsis = self.a*(1-self.e)
+        self.apoapsis = 2*self.a - self.periapsis
+        self.ang_moment = np.sqrt(self.a*(1 - self.e**2)/self.mu)
+        self.c3 = -2*self.a/self.mu
 
     def __set_rotation_mat__(self):
         """Sets rotation matices based on orbit parameters"""
@@ -223,19 +231,6 @@ class Orbit:
         else : tscale = 60*24.0
         cmd = "gnuplot -p -e \"filename='{}'; outputfile='{}'; delta_t = {}\" rota_solo.plt".format(self.fname, output, tscale)
         call(cmd, shell=True)
-        #long = self.longitude_t; lat = self.latitude_t
-        #pos = np.where(np.abs(np.diff(long)) >= 0.5)[0]+1
-        #long = np.insert(long, pos, np.nan)
-        #lat = np.insert(lat, pos, np.nan)
-
-        #worldm = cv.imread(background)
-        #worldm = cv.cvtColor(worldm, cv.COLOR_BGR2RGB)
-        #h, w, _ = worldm.shape
-        #plt.imshow(worldm, extent=[-180, 180, -90, 90])
-        #plt.plot(long * (180/np.pi), lat * (180/np.pi), color="red")
-        #plt.tight_layout()
-        #plt.savefig(fname)
-        #plt.show()
         return
 
     def plot_3D(self):
@@ -246,17 +241,26 @@ class Orbit:
     def M_at(self, t):
         return self.__interpolate__(self.M, t)
 
-    def E_at(self, t): 
+    def E_at(self, t):
         return self.__interpolate__(self.E, t)
 
     def f_at(self, t):
         return self.__interpolate__(self.f, t)
-
-    def r_at(self, t):
-        return self.__interpolate__(self.radius_t, t)
 
     def long_at(self, t):
         return self.__interpolate__(self.longitude_t, t)
 
     def lat_at(self, t):
         return self.__interpolate__(self.latitude_t, t)
+
+    def r_at(self, f):
+        f = f * (np.pi/180)
+        return self.a*(1-self.e**2)/(1 + self.e*np.cos(f))
+
+    def v_at(self, f):
+        f = f * (np.pi/180)
+        return self.mu/self.ang_moment * np.sqrt(1 + self.e**2 + 2*self.e*np.cos(f))
+
+    def gamma_at(self, f):
+        f = f * (np.pi/180)
+        return np.arctan2(self.e * np.sin(f), 1 + self.e*np.cos(f))
