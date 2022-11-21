@@ -17,7 +17,7 @@ sudo apt install gnuplot
 git clone https://github.com/arthur-miguel/mec_voo.git
 ```
 
-### Windows
+### Windows (TODO)
 
 ## Exemplos
 ```python
