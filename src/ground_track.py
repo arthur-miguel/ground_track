@@ -24,15 +24,15 @@ def E_prime(E_, M, e): return E_ - e*np.sin(E_) - M
 class Orbit:
     """
     Orbit object, major semiaxis and eccentricity are required, other parameters are optional
-    params: a         = major semiaxis
+    params: a         = major semiaxis [km]
             e         = eccentricity
-            I         = inclination
-            Omega     = accending node longitude
-            omega     = periapsis argument
-            epoch     = starting time
+            I         = inclination [degree]
+            Omega     = accending node longitude [degree]
+            omega     = periapsis argument [degree]
+            epoch     = starting time [same as time_mode]
             time_mode = input time unit
-            delta_t   = time-step
-            mu        = standard gravitational parameter (km³s⁻²)
+            delta_t   = time-step [same as time_mode]
+            mu        = standard gravitational parameter [km³s⁻²]
     """
     def __init__(self,
                  a,
