@@ -16,7 +16,7 @@ Gnuplot >= 5.0
 ```
 pip install --user numpy scipy
 sudo apt install gnuplot
-git clone https://github.com/arthur-miguel/mec_voo.git
+git clone https://github.com/arthur-miguel/ground_track.git
 ```
 
 ### Windows (TODO)
