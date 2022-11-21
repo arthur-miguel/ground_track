@@ -94,10 +94,10 @@ print sprintf("\n  Rota de solo gerada com sucesso no arquivo '%s'!\n", outputfi
 exit
 
 set output 'world110m_filledcurves1.png'
-plot 'world_110m.txt' w filledcu ls 1, \
+plot 'world_110m' w filledcu ls 1, \
      ''               w l ls 2
 
 set output 'world110m_filledcurves2.png'
-plot 'world_110m.txt' i 0 w filledcu ls 1, \
+plot 'world_110m' i 0 w filledcu ls 1, \
      ''               i 1 w filledcu x1 ls 1, \
      ''               w l ls 2
