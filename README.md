@@ -22,7 +22,7 @@ sudo apt install gnuplot
 # fedora distros
 sudo dnf install gnuplot
 # suse distros
-sudo zypper in gnuplot
+sudo zypper install gnuplot
 # arch distros
 sudo pacman -S gnuplot
 # gentoo
