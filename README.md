@@ -13,9 +13,14 @@ Gnuplot >= 5.0
 ## Instalação
 
 ### Linux
+
+**Dependências**
 ```
 pip install --user numpy scipy
 sudo apt install gnuplot
+```
+**Código-fonte**
+```
 git clone https://github.com/arthur-miguel/ground_track.git
 ```
 
