@@ -238,6 +238,11 @@ class Orbit:
         #plt.show()
         return
 
+    def plot_3D(self):
+        cmd = "gnuplot -e \"filename='{}'\" orb3D.plt".format(self.fname)
+        call(cmd, shell=True)
+        return
+
     def M_at(self, t):
         return self.__interpolate__(self.M, t)
 
