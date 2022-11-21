@@ -203,8 +203,8 @@ class Orbit:
         self.fname = fname
         return
 
-    def plot_track(self):
-        cmd = "gnuplot -e \"filename='{}'\" rota_solo.txt".format(self.fname)
+    def plot_track(self, output=self.fname):
+        cmd = "gnuplot -e \"filename='{}'\" \"output='{}.png'\" rota_solo.txt".format(self.fname, output)
         call(cmd, shell=True)
         #long = self.longitude_t; lat = self.latitude_t
         #pos = np.where(np.abs(np.diff(long)) >= 0.5)[0]+1

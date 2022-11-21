@@ -78,10 +78,9 @@ set yrange [-90:90]
 
 set term png enhanced size 1024,768
 
-outputfile=sprintf("%s.png", dados );
 set output outputfile
 
-plot 'world_110m.txt' i 0 w filledcu ls 1, \
+plot 'world_110m' i 0 w filledcu ls 1, \
      ''               i 1 w filledcu x1 ls 1, \
      ''               w l ls 2,\
      dados u (wrap(column(lon),-180,180)  ):(wrap(column(lat),-90,90)):( pontohora($0,t0,xtempo*column(tempo)) ) w p pt 7 ps var lc rgb 'orangered' ,\
@@ -89,7 +88,7 @@ plot 'world_110m.txt' i 0 w filledcu ls 1, \
 set output
 
 
-print sprintf("\n  Rota de solo gerada com sucesso no arquivo '%s'!\n\n", outputfile );
+print sprintf("\n  Rota de solo gerada com sucesso no arquivo '%s'!\n", outputfile );
 
 
 exit
