@@ -36,3 +36,10 @@ python teste.py
 ![alt text](./iss.txt.png?raw=true)
 ### Traçado de solo da Molnyia
 ![alt text](./molnyia.txt.png?raw=true)
+
+## Contato
+
+Arthur Gabardo - <arthur.miguel@grad.ufsc.br>
+Github - <https://github.com/arthur-miguel/mec_voo>
+
+Agradecimentos ao [Prof. Helton Gaspar da Silva]: https://helton.paginas.ufsc.br/ pelo script do Gnuplot
