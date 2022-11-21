@@ -257,7 +257,7 @@ class Orbit:
         f = f * (np.pi/180)
         return self.a*(1-self.e**2)/(1 + self.e*np.cos(f))
 
-    def v_at(self, f)
+    def v_at(self, f):
         f = f * (np.pi/180)
         return self.mu/self.ang_moment * np.sqrt(1 + self.e**2 + 2*self.e*np.cos(f))
 
