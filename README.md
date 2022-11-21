@@ -4,6 +4,7 @@
 ## Dependencias
 ```
 Python >= 3.0
+Scipy
 Gnuplot >= 5.0
 ```
 
@@ -31,6 +32,7 @@ O arquivo `teste.py` possui exemplos do traçado da ISS e Molnya durante o curso
 ```
 python teste.py
 ```
-
-![alt text](./molnyia.txt.png?raw=true)
+### Traçado de solo da ISS
+![alt text](./iss.txt.png?raw=true)
+### Traçado de solo da Molnyia
 ![alt text](./molnyia.txt.png?raw=true)
