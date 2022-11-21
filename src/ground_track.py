@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/bin/python
 ##############################################################
 #   
 #   Python library for orbit ground track ploting 
@@ -193,7 +193,7 @@ class Orbit:
     
     def save_data(self, fname="orbit.csv"):
         """Saves orbit data to text file"""
-        data = np.column_stack((self.t, self.M, self.f, self.E, self.M, self.xyz[0], self.xyz[1], self.xyz[2], self.longitude_t * (180/np.pi), self.latitude_t * (180/np.pi)))
+        data = np.column_stack((self.t, self.f, self.E, self.M, self.xyz[0], self.xyz[1], self.xyz[2], self.longitude_t * (180/np.pi), self.latitude_t * (180/np.pi)))
         np.savetxt(fname, data)
         self.fname = fname
         return

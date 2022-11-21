@@ -1,5 +1,5 @@
 # Imports ground_track library
-from ground_track import *
+from ../ground_track import *
 
 # Molnyia ground track
 molnyia = Orbit( a = 26600, #major semiaxis

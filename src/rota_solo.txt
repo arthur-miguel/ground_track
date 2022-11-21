@@ -21,8 +21,8 @@ reset
 
  dados = filename; # nome do arquivo de dados de longitude e latitude em função do tempo
  tempo = 1;             # número da coluna do arquivo de dados com o tempo
- lon = 9;               # número da coluna do arquivo de dados com a longitude
- lat = 10;               # número da coluna do arquivo de dados com a latitude
+ lon = 8;               # número da coluna do arquivo de dados com a longitude
+ lat = 9;               # número da coluna do arquivo de dados com a latitude
  
  xtempo = 1.0/60;          # fator de conversão do tempo de sua série para minutos
  
