@@ -29,7 +29,7 @@ orb1.evaluate(t) # calcula a trajetoria e traçado de solo da orb1 no tempo t
 orb1.save_data("orb1.txt") # salva os dados calculados no arquivo orb1.txt
 orb1.plot_track() # gera um plot com o traçao de solo
 ```
-O arquivo `teste.py` possui exemplos do traçado da ISS e Molnya durante o curso de um dia. Para executar os script basta dar o seguinte comando
+O arquivo `teste.py` possui exemplos do traçado da ISS e Molnya durante o curso de um dia. Para executar o script basta emitir o seguinte comando em seu diretório:
 
 ```
 python teste.py
