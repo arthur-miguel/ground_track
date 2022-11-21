@@ -1,5 +1,5 @@
 # Traçado de Solo
-
+*Biblioteca em Python para traçado de solo de orbitas fechadas. Parte da disciplina de Mecanica do Voo Espacial da Universidade Federal de Santa Catarina*
 
 ## Dependencias
 ```
@@ -31,3 +31,6 @@ O arquivo `teste.py` possui exemplos do traçado da ISS e Molnya durante o curso
 ```
 python teste.py
 ```
+
+![alt text](https://github.com/arthur-miguel/mec-voo/blob/main/iss.txt.png?raw=true)
+![alt text](https://github.com/arthur-miguel/mec-voo/blob/main/molnyia.txt.png?raw=true)
