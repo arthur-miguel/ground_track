@@ -15,7 +15,7 @@ Gnuplot >= 5.0
 ### Linux
 
 **Dependências**
-```
+```sh
 pip install --user numpy scipy
 # debian distros
 sudo apt install gnuplot
