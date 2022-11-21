@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##############################################################
-#   
-#   Python library for orbit ground track ploting 
+#
+#   Python library for orbit ground track ploting
 #
 #   Authors: Arthur Gabardo*, Andre Canani, Vinicus Pereira
 #
@@ -33,7 +33,7 @@ class Orbit:
             time_mode = input time unit
             delta_t   = time-step
             mu        = standard gravitational parameter
-    """    
+    """
     def __init__(self,
                  a,
                  e,
@@ -44,31 +44,31 @@ class Orbit:
                  time_mode="seconds",
                  delta_t=1,
                  mu=398600):
-        
+
         if (time_mode not in tModes):
             self.time_mode = input("Invalid time mode, select a valid one ({}): ".format(tModes))
         else:
             self.time_mode = time_mode
-            
+
         if (time_mode == "seconds"): self.t_factor = 3600
         if (time_mode == "minutes"): self.t_factor = 60
         if (time_mode == "hours")  : self.t_factor = 1
         if (time_mode == "days")   : self.t_factor = 1/24
-        
-        
+
+
         if (delta_t <= 0):
             self.delta_t = input("Invalid time-step (delta_t > 0$): ")
-        
+
         if (a <= 0):
             self.a = input("Invalid major semiaxis (a > 0): ")
         else:
             self.a = a
-            
+
         if (e < 0):
             self.e = input("Invalid excentricity (e >= 0): ")
         else:
             self.e = e
-        
+
         if (I > np.pi):
             self.I = I%np.pi
         elif (I < 0):
@@ -76,15 +76,15 @@ class Orbit:
             self.I = I%np.pi
         else:
             self.I = I
-            
+
         self.Omega = Omega%(2*np.pi)
         self.omega = omega%(2*np.pi)
 
         self.mu = abs(mu)
-        
+
         self.epoch = epoch
         self.period = 2*np.pi * np.sqrt(a**3/mu)
-        
+
         self.__set_rotation_mat__()
         return
 
@@ -93,16 +93,16 @@ class Orbit:
         self.R_O = np.array([[np.cos(self.Omega), -np.sin(self.Omega), 0],
                              [np.sin(self.Omega),  np.cos(self.Omega), 0],
                              [                 0,                   0, 1]])
-        
+
         self.R_o = np.array([[np.cos(self.omega), -np.sin(self.omega), 0],
                              [np.sin(self.omega),  np.cos(self.omega), 0],
                              [                 0,                   0, 1]])
-        
+
         self.R_I = np.array([[1,              0,               0],
                              [0, np.cos(self.I), -np.sin(self.I)],
                              [0, np.sin(self.I),  np.cos(self.I)]])
         return
-    
+
     def M_f(self):
         """Calculates mean anomaly at given time"""
         M =  (2*np.pi/self.period) * (self.t - self.epoch)
@@ -118,7 +118,7 @@ class Orbit:
         for i, Mi in enumerate(self.M):
             Ei = newton(E_prime, Mi, args=(Mi, self.e,))
             while Ei < 0         : Ei+=(2*np.pi)
-            while Ei > (2*np.pi) : Ei-=(2*np.pi)          
+            while Ei > (2*np.pi) : Ei-=(2*np.pi)
             E.append(Ei)
         self.E = np.array(E)
         return self.E
@@ -147,7 +147,7 @@ class Orbit:
 
         r = self.__radius()
 
-        xyz = [] 
+        xyz = []
         for i, anomi in enumerate(anom):
             xyz.append(np.matmul(rot, anomi) * r[i])
         self.xyz = np.array(xyz).T
@@ -176,7 +176,7 @@ class Orbit:
             lat.append(delta)
         self.latitude_t = np.array(lat)
         return self.latitude_t
-    
+
     def evaluate(self, t):
         """
         Computes orbit kinematics at a time interval
@@ -190,7 +190,7 @@ class Orbit:
         self.longitude()
         self.latitude()
         return
-    
+
     def save_data(self, fname="orbit"):
         """
         Saves orbit data to text file
@@ -202,7 +202,7 @@ class Orbit:
         np.savetxt(fname, data)
         self.fname = fname
         return
-    
+
     def plot_track(self):
         cmd = "gnuplot -e \"filename='{}'\" rota_solo.txt".format(self.fname)
         call(cmd, shell=True)
@@ -210,7 +210,7 @@ class Orbit:
         #pos = np.where(np.abs(np.diff(long)) >= 0.5)[0]+1
         #long = np.insert(long, pos, np.nan)
         #lat = np.insert(lat, pos, np.nan)
-        
+
         #worldm = cv.imread(background)
         #worldm = cv.cvtColor(worldm, cv.COLOR_BGR2RGB)
         #h, w, _ = worldm.shape
