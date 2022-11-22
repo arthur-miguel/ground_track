@@ -55,7 +55,12 @@ sudo apt install gnuplot # para outras distros consulte seu package manager
 git clone https://github.com/arthur-miguel/ground_track.git
 ```
 
-### Windows (TODO)
+### Windows
+
+1º Instalar Gnuplot através do link: [Gnuplot](https://sourceforge.net/projects/gnuplot/files/gnuplot/)
+2ª Instalar o Python;
+3ª Instalar Scipy;
+4ª Clonar o repositório.
 
 ## Exemplos
 O arquivo [`teste.py`](./src/teste.py) possui exemplos e instrucoes para utilizacao da biblioteca, fique a vontade para modifica-lo como bem entender e experimentar diferentes parametros, para usa-lo basta emitir o seguinte comando em seu respectivo diretorio:
