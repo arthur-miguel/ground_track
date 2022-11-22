@@ -17,9 +17,9 @@ orb_eq.evaluate(0, orb_eq.period) # início e fim do intervalo de tempo que se q
 ```
 além do campo `period`, outras propriedades da órbita podem ser facilmente acessadas como `apoapsis`, `periapsis`, `ang_moment` e `c3`.
 
-É possivel salvar todos os dados em um arquivo texto por meio da função `Orbit.save_data("nome_do_arquivo")`. É necessario salvar esse arquivo para usar os mÉtodos de plotagem da biblioteca.
+É possivel salvar todos os dados em um arquivo texto por meio da função `Orbit.save_data("nome_do_arquivo")`. É necessario salvar esse arquivo para usar os métodos de plotagem da biblioteca.
 
-Outra funcionalidade da biblioteca é a de plotar tanto o traçado de solo quanto a Órbita em três dimensões por meio dos comandos `Orbit.plot_track()` (como parâmetro opcional é possivel passar o nome do arquivo de saída da função `plot_track()`) e `Orbit.plot_3D()` respectivamente.
+Outra funcionalidade da biblioteca é a de plotar tanto o traçado de solo quanto a Órbita em três dimensões por meio dos comandos `Orbit.plot_track()` (como parâmetro opcional é possivel passar o nome do arquivo de saída da função `plot_track()`) e `Orbit.plot_3D()`, respectivamente.
 
 Para acessar o valor das anomalias em função do tempo e velocidades, raio da órbita e ângulo de voo em função da anomalia verdadeira estão à disposição as funções `*_at`, como por exemplo:
 
