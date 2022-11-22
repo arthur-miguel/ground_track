@@ -61,7 +61,7 @@ git clone https://github.com/arthur-miguel/ground_track.git
 
 2ª Instalar o Python;
 
-3ª Instalar Scipy;
+3ª Instalar Scipy; --> pip install --user scipy
 
 4ª Clonar o repositório.
 
