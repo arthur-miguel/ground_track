@@ -58,8 +58,11 @@ git clone https://github.com/arthur-miguel/ground_track.git
 ### Windows
 
 1º Instalar Gnuplot através do link: [Gnuplot](https://sourceforge.net/projects/gnuplot/files/gnuplot/)
+
 2ª Instalar o Python;
+
 3ª Instalar Scipy;
+
 4ª Clonar o repositório.
 
 ## Exemplos
