@@ -3,33 +3,33 @@
 
 ## Sobre
 
-A biblioteca `ground_track` inclui o tamplate da classe `Orbit` e seus metodos que permitem a realização do estudo da cinematica de órbitas keplerianas e de problemas de dois corpos.
+A biblioteca `ground_track` inclui o template da classe `Orbit` e seus métodos que permitem a realização do estudo da cinemática de órbitas keplerianas e de problemas de dois corpos.
 
-A forma mais basica de incializar uma orbita é passando o semieixo maior e excentricidade para seu construtor:
+A forma mais básica de incializar uma órbita é passando o semieixo maior e excentricidade para seu construtor:
 ```python
 orb_eq = Orbit(42157, 0)
 ```
-também podem ser passados como parametros para construção de uma orbita sua inclinação, longitude do nó ascendende, argumento do periapse, época, unidade de tempo (segundos, minutos, ...), passo de tempo para simulação e parametro gravitacional padrão (mu) em km^3/s^2
+também podem ser passados como parâmetros para construção de uma órbita: inclinação, longitude do nó ascendende, argumento do periapse, época, unidade de tempo (segundos, minutos, ...), passo de tempo para simulação e parâmetro gravitacional padrão (mu) em km^3/s^2
 
-Para o calculo da cienematica da órbita usa-se a função `evaluate`
+Para o cálculo da cinemática da órbita, usa-se a função `evaluate`
 ```python
-orb_eq.evaluate(0, orb_eq.period) # inicio e fim do intervalo de tempo que se quer avaliar
+orb_eq.evaluate(0, orb_eq.period) # início e fim do intervalo de tempo que se quer avaliar
 ```
 além do campo `period` outras propriedades da órbita podem ser facilmente acessadas como `apoapsis`, `periapsis`, `ang_moment` e `c3`.
 
-É possivel salvar todos os dados em um arquivo texto por meio da função `Orbit.save_data("nome_do_arquivo")`, é necessario salvar esse arquivo para usar os metodos de plotagem da biblioteca.
+É possivel salvar todos os dados em um arquivo texto por meio da função `Orbit.save_data("nome_do_arquivo")`. É necessario salvar esse arquivo para usar os mÉtodos de plotagem da biblioteca.
 
-Outra funcionalidade da biblioteca é a de plotar tanto o traçado de solo quanto a orbita em tres dimensões por meio dos comandos `Orbit.plot_track()` (como parametro opcional é possivel passar o nome do arquivo de saida da função `plot_track()`) e `Orbit.plot_3D()` respectivamente.
+Outra funcionalidade da biblioteca é a de plotar tanto o traçado de solo quanto a Órbita em três dimensões por meio dos comandos `Orbit.plot_track()` (como parâmetro opcional é possivel passar o nome do arquivo de saída da função `plot_track()`) e `Orbit.plot_3D()` respectivamente.
 
-Para acessar o valor das anolias em função do tempo e velocidades, raio da orbita e angulo de voo em função da anomalia verdadeira estão a disposição as funções `*_at`, como por exemplo:
+Para acessar o valor das anomalias em função do tempo e velocidades, raio da órbita e ângulo de voo em função da anomalia verdadeira estão à disposição as funções `*_at`, como por exemplo:
 
 ```python
-Orbit.M_at(tempo)
-Orbit.E_at(tempo)
-Orbit.f_at(tempo)
-Orbit.r_at(anomalia)
-Orbit.v_at(anomalia)
-Orbit.gamma_at(anomalia)
+orb_eq.M_at(tempo)
+orb_eq.E_at(tempo)
+orb_eq.f_at(tempo)
+orb_eq.r_at(anomalia)
+orb_eq.v_at(anomalia)
+orb_eq.gamma_at(anomalia)
 ```
 para mais detalhes sobre a utilização da biblioteca veja a seção exemplos.
 
@@ -66,7 +66,7 @@ git clone https://github.com/arthur-miguel/ground_track.git
 4ª Clonar o repositório.
 
 ## Exemplos
-O arquivo [`teste.py`](./src/teste.py) possui exemplos e instrucoes para utilizacao da biblioteca, fique a vontade para modifica-lo como bem entender e experimentar diferentes parametros, para usa-lo basta emitir o seguinte comando em seu respectivo diretorio:
+O arquivo [`teste.py`](./src/teste.py) possui exemplos e instruções para utilizacão da biblioteca, fique a vontade para modificá-lo como bem entender e experimentar diferentes parâmetros. Para usá-lo basta emitir o seguinte comando em seu respectivo diretório:
 ```
 python teste.py
 ```
