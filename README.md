@@ -66,11 +66,11 @@ git clone https://github.com/arthur-miguel/ground_track.git
 4ª Clonar o repositório.
 
 ## Exemplos
-O arquivo [`teste.py`](./src/teste.py) possui exemplos e instruções para utilizacão da biblioteca, fique a vontade para modificá-lo como bem entender e experimentar diferentes parâmetros. Para usá-lo basta emitir o seguinte comando em seu respectivo diretório:
+O arquivo [`teste.py`](./src/teste.py) possui exemplos e instruções para utilização da biblioteca, fique a vontade para modificá-lo como bem entender e experimentar diferentes parâmetros. Para usá-lo basta emitir o seguinte comando em seu respectivo diretório:
 ```
 python teste.py
 ```
-### Construcao do objeto `Orbit`
+### Construção do objeto `Orbit`
 ```python
 molnyia = Orbit( 26600,  #major semiaxis
                  0.74,   #eccentricity
@@ -81,7 +81,7 @@ molnyia = Orbit( 26600,  #major semiaxis
 molnyia.evaluate(0, 2*molnyia.period)   # evaluates orbit at two periods
 ```
 
-### Parametros da orbita
+### Parâmetros da órbita
 **entrada**
 ```python
 Q = molnyia.apoapsis		            # gets orbit apoapsis
@@ -89,7 +89,7 @@ q = molnyia.periapsis		            # gets orbit periapsis
 energy = molnyia.c3		              # gets orbit specific energy
 moment = molnyia.ang_moment	        # gets orbit specific moment
 ```
-**saida**
+**saída**
 ```
 Molnyia parameters
 Apoapsis:  46284.0
@@ -119,7 +119,7 @@ r2     = molnyia.r_at(f2)             # gets radius at a quarter of period
 v2     = molnyia.v_at(f2)		          # gets velocity at a quarter of period
 gamma2 = molnyia.gamma_at(f2)		      # gets flight angle at a quarter of period
 ```
-**saida**
+**saída**
 ```
 Time of flight
 Time     True anomaly    Radius     Velocity   Flight angle
@@ -138,7 +138,7 @@ Time     True anomaly    Radius     Velocity   Flight angle
 ### Traçado de solo da Molnyia (`plot_track()`)
 ![alt text](./examples/molnyia.png?raw=true)
 
-### Orbita Molnyia 3D (`plot_3D()`)
+### Órbita Molnyia 3D (`plot_3D()`)
 ![alt text](./examples/molnyia_3D.png?raw=true)
 
 ## Contato
