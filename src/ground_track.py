@@ -268,5 +268,9 @@ class Orbit:
        
     def t_at(self,f):
         """Calculate the fly time given the true anomaly"""
-        duasdhasuhdasu=1
-        return
+        f = f * (np.pi/180)
+        E = 2*np.arctan2(np.sqrt(1-self.e) * np.tan(f/2), np.sqrt(1+self.e))
+        M = E - self.e*np.sin(E)
+        n = 2*np.pi/self.period
+        t = self.epoch+ M/n
+        return t
