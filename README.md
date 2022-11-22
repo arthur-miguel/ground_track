@@ -62,10 +62,27 @@ O arquivo [`teste.py`](./src/teste.py) possui exemplos e instrucoes para utiliza
 ```
 python teste.py
 ```
-### Traçado de solo da ISS
+### Parametros da orbita
+**Entrada**
+```python
+Q = molnyia.apoapsis		            # gets orbit apoapsis
+q = molnyia.periapsis		            # gets orbit periapsis
+energy = molnyia.c3		              # gets orbit specific energy
+moment = molnyia.ang_moment	        # gets orbit specific moment
+```
+**saida**
+```python
+Molnyia parameters
+Apoapsis:  46284.0
+Periapsis:  6916.0
+Specific moment:  69258.130381927
+Specific energy:  -0.13346713497240342
+```
+
+### Traçado de solo da ISS (`plot_track()`)
 ![alt text](./examples/iss.png?raw=true)
 
-### Orbita ISS 3D
+### Orbita ISS 3D (`plot_3D()`)
 ![alt text](./examples/iss_3D.png?raw=true)
 
 ### Traçado de solo da Molnyia
