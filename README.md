@@ -1,7 +1,7 @@
 # Traçado de Solo
 *Biblioteca em Python para traçado de solo de órbitas fechadas. Parte da disciplina de Mecânica do Voo Espacial da Universidade Federal de Santa Catarina*
 
-## Sobre (TODO)
+## Sobre
 
 A biblioteca `ground_track` inclui o tamplate da classe `Orbit` e seus metodos que permitem a realização do estudo da cinematica de órbitas keplerianas e de problemas de dois corpos.
 
@@ -58,14 +58,7 @@ git clone https://github.com/arthur-miguel/ground_track.git
 ### Windows (TODO)
 
 ## Exemplos
-```python
-orb1 = Orbit(semieixo, excentricidade, inclinação, long. do periapse, arg. periapse) # veja arquivo gorundtrack.py para mais opções
-orb1.evaluate(0, orb1.period) # calcula a trajetoria e traçado de solo da orb1 no tempo de um periodo
-orb1.save_data("orb1.txt") # salva os dados calculados no arquivo orb1.txt
-orb1.plot_track() # gera um plot com o traçao de solo
-```
-O arquivo `teste.py` possui exemplos do traçado da ISS e Molnya durante o curso de um dia. Para executar o script basta emitir o seguinte comando em seu diretório:
-
+O arquivo [`teste.py`](./src/teste.py) possui exemplos e instrucoes para utilizacao da biblioteca, fique a vontade para modifica-lo como bem entender e experimentar diferentes parametros, para usa-lo basta emitir o seguinte comando em seu respectivo diretorio:
 ```
 python teste.py
 ```
