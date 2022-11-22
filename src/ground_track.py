@@ -32,7 +32,7 @@ class Orbit:
             epoch     = starting time [same as time_mode]
             time_mode = input time unit
             delta_t   = time-step [same as time_mode]
-            mu        = standard gravitational parameter [km³s⁻²]
+            mu        = standard gravitational parameter [km^3/s^2]
     """
     def __init__(self,
                  a,
@@ -83,13 +83,13 @@ class Orbit:
         self.period = 2*np.pi * np.sqrt(self.a**3/self.mu)
 
         self.__set_rotation_mat__()
-
+        self.__misc_params__()
 
         return
 
     def __misc_params__(self):
-        self.periapsis = a*(1-e)
-        self.apoapsis = 2*a - self.periapsis
+        self.periapsis = self.a*(1-self.e)
+        self.apoapsis = 2*self.a - self.periapsis
         self.ang_moment = np.sqrt(self.a*(1 - self.e**2)/self.mu)
         self.c3 = -2*self.a/self.mu
 
@@ -234,24 +234,24 @@ class Orbit:
         return
 
     def plot_3D(self):
-        cmd = "gnuplot -e \"filename='{}'\" orb3D.plt".format(self.fname)
+        cmd = "gnuplot -e \"filename='{}'\" orb_3D.plt".format(self.fname)
         call(cmd, shell=True)
         return
 
     def M_at(self, t):
-        return self.__interpolate__(self.M, t)
+        return self.__interpolate__(self.M, t) * (180/np.pi)
 
-    def E_at(self, t): 
-        return self.__interpolate__(self.E, t)
+    def E_at(self, t):
+        return self.__interpolate__(self.E, t) * (180/np.pi)
 
     def f_at(self, t):
-        return self.__interpolate__(self.f, t)
+        return self.__interpolate__(self.f, t) * (180/np.pi)
 
     def long_at(self, t):
-        return self.__interpolate__(self.longitude_t, t)
+        return self.__interpolate__(self.longitude_t, t) * (180/np.pi)
 
     def lat_at(self, t):
-        return self.__interpolate__(self.latitude_t, t)
+        return self.__interpolate__(self.latitude_t, t) * (180/np.pi)
 
     def r_at(self, f):
         f = f * (np.pi/180)
@@ -259,8 +259,8 @@ class Orbit:
 
     def v_at(self, f):
         f = f * (np.pi/180)
-        return self.mu/self.ang_moment * np.sqrt(1 + self.e**2 + 2*self.e*np.cos(f))
+        return np.sqrt(self.mu/(self.a*(1-e**2))) * np.sqrt(1 + self.e**2 + 2*self.e*np.cos(f))
 
     def gamma_at(self, f):
         f = f * (np.pi/180)
-        return np.arctan2(self.e * np.sin(f), 1 + self.e*np.cos(f))
+        return np.arctan2(self.e * np.sin(f), 1 + self.e*np.cos(f)) * (180/np.pi)
