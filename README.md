@@ -17,7 +17,7 @@ orb_eq.evaluate(0, orb_eq.period) # início e fim do intervalo de tempo que se q
 ```
 além do campo `period`, outras propriedades da órbita podem ser facilmente acessadas como `apoapsis`, `periapsis`, `ang_moment` e `c3`.
 
-É possivel salvar todos os dados em um arquivo texto por meio da função `Orbit.save_data("nome_do_arquivo")`. É necessario salvar esse arquivo para usar os métodos de plotagem da biblioteca.
+É possivel salvar todos os dados em um arquivo texto por meio da função `Orbit.save_data("nome_do_arquivo")`. É necessário salvar esse arquivo para usar os métodos de plotagem da biblioteca.
 
 Outra funcionalidade da biblioteca é a de plotar tanto o traçado de solo quanto a Órbita em três dimensões por meio dos comandos `Orbit.plot_track()` (como parâmetro opcional é possivel passar o nome do arquivo de saída da função `plot_track()`) e `Orbit.plot_3D()`, respectivamente.
 
@@ -132,7 +132,7 @@ Time     True anomaly    Radius     Velocity   Flight angle
 ### Traçado de solo da ISS (`plot_track()`)
 ![alt text](./examples/iss.png?raw=true)
 
-### Orbita ISS 3D (`plot_3D()`)
+### Órbita ISS 3D (`plot_3D()`)
 ![alt text](./examples/iss_3D.png?raw=true)
 
 ### Traçado de solo da Molnyia (`plot_track()`)
