@@ -57,6 +57,7 @@ git clone https://github.com/arthur-miguel/ground_track.git
 
 ### Windows
 
+[Video com instruções para instalação](https://www.youtube.com/watch?v=7ehOTj8OzLk)
 
 1º Instalar Gnuplot através do link: [Gnuplot](https://sourceforge.net/projects/gnuplot/files/gnuplot/)
 
