@@ -57,6 +57,8 @@ git clone https://github.com/arthur-miguel/ground_track.git
 
 ### Windows
 
+<iframe width="1166" height="656" src="https://www.youtube.com/embed/7ehOTj8OzLk" title="Instalação Biblioteca P2C-Windows" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 1º Instalar Gnuplot através do link: [Gnuplot](https://sourceforge.net/projects/gnuplot/files/gnuplot/)
 
 2ª Instalar o Python;
