@@ -149,4 +149,4 @@ Arthur Gabardo - <arthur.miguel@grad.ufsc.br>
 
 Github - <https://github.com/arthur-miguel/ground_track>
 
-Agradecimentos ao [Prof. Helton da Silva Gaspar](https://helton.paginas.ufsc.br/) pelo script do Gnuplot
+Agradecimentos ao [Prof. Helton da Silva Gaspar](https://helton.paginas.ufsc.br/) pela ajuda com o Gnuplot
