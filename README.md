@@ -62,8 +62,19 @@ O arquivo [`teste.py`](./src/teste.py) possui exemplos e instrucoes para utiliza
 ```
 python teste.py
 ```
+### Construcao do objeto `Orbit`
+```python
+molnyia = Orbit( 26600,  #major semiaxis
+                 0.74,   #eccentricity
+                 63.4,   #inclination
+                 80,     #accending node
+                 270     #periapsis argument
+               )
+molnyia.evaluate(0, 2*molnyia.period)   # evaluates orbit at two periods
+```
+
 ### Parametros da orbita
-**Entrada**
+**entrada**
 ```python
 Q = molnyia.apoapsis		            # gets orbit apoapsis
 q = molnyia.periapsis		            # gets orbit periapsis
@@ -71,12 +82,43 @@ energy = molnyia.c3		              # gets orbit specific energy
 moment = molnyia.ang_moment	        # gets orbit specific moment
 ```
 **saida**
-```python
+```
 Molnyia parameters
 Apoapsis:  46284.0
 Periapsis:  6916.0
 Specific moment:  69258.130381927
 Specific energy:  -0.13346713497240342
+```
+
+### Tempo de voo
+**entrada**
+```python
+tQ     = molnyia.period/2
+vQ     = molnyia.v_at(180)	          # gets velocity at apoapsis
+gammaQ = molnyia.gamma_at(180)        # gets flight angle at apoapsis
+vq     = molnyia.v_at(0)	            # gets velocity at periapsis
+gammaq = molnyia.gamma_at(0)	        # gets flight angle at periapsis
+
+t1     = molnyia.period*0.17
+f1     = molnyia.f_at(t1)             # gets true anomaly at a quarter of period
+r1     = molnyia.r_at(f1)             # gets radius at a quarter of period
+v1     = molnyia.v_at(f1)		          # gets velocity at a quarter of period
+gamma1 = molnyia.gamma_at(f1)		      # gets flight angle at a quarter of period
+
+t2     = molnyia.period*0.33
+f2     = molnyia.f_at(t2)             # gets true anomaly at a quarter of period
+r2     = molnyia.r_at(f2)             # gets radius at a quarter of period
+v2     = molnyia.v_at(f2)		          # gets velocity at a quarter of period
+gamma2 = molnyia.gamma_at(f2)		      # gets flight angle at a quarter of period
+```
+**saida**
+```
+Time of flight
+Time     True anomaly    Radius     Velocity   Flight angle
+0.0      0               6916.0     10.01      0.0
+2.04     145.57          30887.51   3.29       47.04
+3.96     165.61          42489.42   1.94       33.0
+6.0      180             46284.0    1.5        0.0
 ```
 
 ### Traçado de solo da ISS (`plot_track()`)
@@ -85,10 +127,10 @@ Specific energy:  -0.13346713497240342
 ### Orbita ISS 3D (`plot_3D()`)
 ![alt text](./examples/iss_3D.png?raw=true)
 
-### Traçado de solo da Molnyia
+### Traçado de solo da Molnyia (`plot_track()`)
 ![alt text](./examples/molnyia.png?raw=true)
 
-### Orbita Molnyia 3D
+### Orbita Molnyia 3D (`plot_3D()`)
 ![alt text](./examples/molnyia_3D.png?raw=true)
 
 ## Contato
