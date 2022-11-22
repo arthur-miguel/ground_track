@@ -138,6 +138,10 @@ class Orbit:
             f.append(fi)
         self.f = np.array(f)
         return self.f
+    
+    def __f2time__(self):
+        """Calculate the fly time given the true anomaly"""
+        
 
     def __radius__(self):
         """Computes orbit radius at a given true anomaly"""
