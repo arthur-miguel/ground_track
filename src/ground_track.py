@@ -139,9 +139,6 @@ class Orbit:
         self.f = np.array(f)
         return self.f
     
-    def __f2time__(self):
-        """Calculate the fly time given the true anomaly"""
-        
 
     def __radius__(self):
         """Computes orbit radius at a given true anomaly"""
@@ -268,3 +265,7 @@ class Orbit:
     def gamma_at(self, f):
         f = f * (np.pi/180)
         return np.arctan2(self.e * np.sin(f), 1 + self.e*np.cos(f)) * (180/np.pi)
+       
+    def t_at(self,f):
+       """Calculate the fly time given the true anomaly"""
+        
