@@ -15,7 +15,7 @@ Para o cálculo da cinemática da órbita, usa-se a função `evaluate`
 ```python
 orb_eq.evaluate(0, orb_eq.period) # início e fim do intervalo de tempo que se quer avaliar
 ```
-além do campo `period` outras propriedades da órbita podem ser facilmente acessadas como `apoapsis`, `periapsis`, `ang_moment` e `c3`.
+além do campo `period`, outras propriedades da órbita podem ser facilmente acessadas como `apoapsis`, `periapsis`, `ang_moment` e `c3`.
 
 É possivel salvar todos os dados em um arquivo texto por meio da função `Orbit.save_data("nome_do_arquivo")`. É necessario salvar esse arquivo para usar os mÉtodos de plotagem da biblioteca.
 
