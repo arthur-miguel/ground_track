@@ -90,7 +90,7 @@ class Orbit:
     def __misc_params__(self):
         self.periapsis = self.a*(1-self.e)
         self.apoapsis = 2*self.a - self.periapsis
-        self.ang_moment = np.sqrt(self.a*(1 - self.e**2)/self.mu)
+        self.ang_moment = np.sqrt(self.a*(1 - self.e**2)*self.mu)
         self.c3 = -2*self.a/self.mu
 
     def __set_rotation_mat__(self):
@@ -259,7 +259,7 @@ class Orbit:
 
     def v_at(self, f):
         f = f * (np.pi/180)
-        return np.sqrt(self.mu/(self.a*(1-e**2))) * np.sqrt(1 + self.e**2 + 2*self.e*np.cos(f))
+        return np.sqrt(self.mu/(self.a*(1-self.e**2))) * np.sqrt(1 + self.e**2 + 2*self.e*np.cos(f))
 
     def gamma_at(self, f):
         f = f * (np.pi/180)
