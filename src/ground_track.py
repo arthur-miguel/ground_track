@@ -267,5 +267,6 @@ class Orbit:
         return np.arctan2(self.e * np.sin(f), 1 + self.e*np.cos(f)) * (180/np.pi)
        
     def t_at(self,f):
-       """Calculate the fly time given the true anomaly"""
-        
+        """Calculate the fly time given the true anomaly"""
+        duasdhasuhdasu=1
+        return
