@@ -1,4 +1,4 @@
-# Traçado de Solo
+# Biblioteca P2C
 *Biblioteca em Python para traçado de solo de órbitas fechadas. Parte da disciplina de Mecânica do Voo Espacial da Universidade Federal de Santa Catarina*
 
 ## Sobre
